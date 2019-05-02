@@ -10,6 +10,7 @@ interface EC2StackProps {
 
 class EC2Stack extends cdk.Stack {
     public readonly myasg: autoscaling.AutoScalingGroup;
+    public readonly mysg: ec2.SecurityGroup;
     constructor(parent: cdk.App, name: string, props: EC2StackProps) {
         super(parent, name);
 
@@ -40,9 +41,10 @@ class EC2Stack extends cdk.Stack {
         myasg.addSecurityGroup(mySecurityGroup);
         myasg.addUserData(
             "curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash",
-            ". ~/.nvm/nvm.sh",
+            ". /.nvm/nvm.sh",
+            "export NVM_DIR='/.nvm'",
             "nvm install node",
-            "yum install git",
+            "yum -y install git",
             "cd /home/ec2-user",
             "git clone https://github.com/xparticle/nodejs_hello_world.git hello_world",
             "cd hello_world",
@@ -50,6 +52,7 @@ class EC2Stack extends cdk.Stack {
 
 
         this.myasg=myasg;
+        this.mysg=mySecurityGroup
 
 
         

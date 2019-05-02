@@ -1,8 +1,5 @@
 //Add VPC
 import cdk = require('@aws-cdk/cdk');
-import iam = require('@aws-cdk/aws-iam');
-import kms = require('@aws-cdk/aws-kms');
-import ecs = require('@aws-cdk/aws-ecs');
 import ec2 = require('@aws-cdk/aws-ec2');
 import nlb = require('@aws-cdk/aws-elasticloadbalancingv2');
 import { NetworkLoadBalancerImportProps } from '@aws-cdk/aws-elasticloadbalancingv2';
